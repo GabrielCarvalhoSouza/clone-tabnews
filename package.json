@@ -4,7 +4,11 @@
   "description": "Um projeto de estudos com a finalidade de colocar em prática o aprendizado no curso.dev",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run services:up && next dev",
+    "services:up": "docker compose -f infra/compose.yaml up -d",
+    "services:stop": "docker compose -f infra/compose.yaml stop",
+    "services:down": "docker compose -f infra/compose.yaml down",
+    "psql": "docker exec -it infra-database-1 psql -U postgres -d postgres",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
